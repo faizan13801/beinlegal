@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable no-undef */
 import React from 'react';
 
 import { SubHeading } from '../../components';
@@ -14,7 +16,7 @@ const Header = () => (
 
     <div className="app__wrapper_img">
       <img src={images.p} alt="header_img" />
-    </div>
+    </div>  
   </div>
 );
 

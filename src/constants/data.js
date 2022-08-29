@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import images from './images';
 
 const webs = [
@@ -36,7 +37,7 @@ const others = [
 const awards = [
   {
     imgUrl: images.award02,
-    title: 'Best Wbsite Designer',
+    title: 'Best legal services',
     subtitle: 'Lorem ipsum dolor sit amet, consectetur.',
   },
   {
@@ -46,7 +47,7 @@ const awards = [
   },
   {
     imgUrl: images.award05,
-    title: 'A+ Quality',
+    title: 'A+ Quality of Services',
     subtitle: 'Lorem ipsum dolor sit amet, consectetur.',
   },
   {

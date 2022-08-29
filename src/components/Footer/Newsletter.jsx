@@ -87,7 +87,7 @@ const Newsletter = () => {
     <>
       <section className="app__newsletter">
                 {/* right side contact form  */}
-                <div className="contact-rightside col-12 col-lg-7">
+                <div className="contact-rightside">
                   <form method="POST" className='app__newsletter-input'>
                   <h1 className='heading' id='connect'>Connect with us</h1>
                     <div className="">

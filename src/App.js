@@ -1,17 +1,19 @@
 import React from 'react';
-import { AboutUs, FindUs, Footer, Gallery, Header, Intro, Laurels, Significantwork,Explore } from './container';
+import { AboutUs, FindUs, Footer, Gallery, Header, Laurels, Significantwork,Explore } from './container';
 import { Navbar } from './components';
 import './App.css';
+import KommunicateChat from './chat';
 
 const App = () => (
   <div>
+    <KommunicateChat/>
     <Navbar />
     <Header />
     <AboutUs />
     <Significantwork />
     <Laurels />
     <Gallery />
-  <Explore/>
+    <Explore/>
     <FindUs />
     <Footer />
   </div>

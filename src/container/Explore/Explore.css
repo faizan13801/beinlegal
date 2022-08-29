@@ -10,7 +10,7 @@
 
 .app__newsletter-input {
     flex-direction: row;
-    margin-top: 3rem;
+    margin-top: 0rem;
 }
 
 .app__newsletter-input input {
@@ -20,7 +20,6 @@
     font-size: 1rem;
     font-family: var(--font-base);
     color: var(--color-white);
-    
     margin-right: 2rem;
     padding: 0.75rem 1rem;
     background: var(--color-black);
@@ -28,6 +27,8 @@
 
 .app__newsletter-input button {
     width: max-content;
+    border: 1px solid var(--color-golden);
+    margin-top: 10px;
 }
 
 @media screen and (min-width: 2000px) {

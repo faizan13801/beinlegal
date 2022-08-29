@@ -1,6 +1,5 @@
 import React from 'react';
 import { SubHeading } from '../../components';
-import { images } from '../../constants';
 import './Explore.css';
 
 const Explore = () => (
@@ -12,7 +11,6 @@ const Explore = () => (
     </div>
     <div className="app__newsletter-input flex__center">
     <input type="email" placeholder="Enter your Name" />
-    <br/>
     <input type="email" placeholder="Enter your Phonenumber"/>
       <input type="email" placeholder="Enter your email address" />
       <button type="button" className="custom__button">Submit</button>

@@ -1,15 +1,21 @@
 .app__newsletter {
     padding: 0rem 4rem;
     border: 1px solid var(--color-golden);
-    background: rgb(31, 125, 202) !important;
+    background: rgb(90, 163, 223) !important;
     margin-bottom: 0;
 }
 
-.heading{
-    color: var(--color-golden);
-    font-size: 2.5rem;
-    font-weight: bold;
+.contact-rightside{
     text-align: center;
+}
+
+.heading{
+    text-align: center;
+    font-family: var(--font-base);
+    color: var(--color-golden);
+    font-size: 35px;
+    letter-spacing: 0.04em;
+    text-transform: capitalize;
     margin-bottom: 10px;
 }
 
@@ -32,7 +38,7 @@
     margin-right: 2rem;
     padding: 0.75rem 1rem;
     background: rgb(234, 231, 225) !important;
-    margin-bottom: 5px;
+    margin-bottom: 1vw;
 }
 
 .app__newsletter-input button {
@@ -63,13 +69,15 @@
 }
 
 @media screen and (max-width: 650px) {
-    .app__newsletter {
-        border: none;
+    .app__newsletter-input {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 5vw;
     }
 
     .app__newsletter-input input {
         margin: 0 0 2rem 0;
-        width: 70% !important;
+        width: 70%;
     }
 }
 
