@@ -3,31 +3,21 @@ import React, {Component} from "react";
 class KommunicateChat extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLoaded: false,
-      error: null,
-      chat: null
-    };
   }
 
   componentDidMount() {
-    const script = document.createElement("script");
-    script.src = "https://widget.kommunicate.io/v2/kommunicate.app";
-    script.async = true;
-    script.onload = () => this.setState({ isLoaded: true });
-    script.onerror = () => this.setState({ error: true });
-    document.body.appendChild(script);
+    (function(d, m){
+      var kommunicateSettings = {"appId":"f66f4ae58f28fec9e7bc3c44c6506d57","popupWidget":true,"automaticChatOpenOnNavigation":true};
+      var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+      s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+      var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+      window.kommunicate = m; m._globals = kommunicateSettings;
+    })(document, window.kommunicate || {});
   }
-
   render() {
-    const { isLoaded, error } = this.state;
-    if (error) {
-      return <div>Error loading chat</div>;
-    } else if (!isLoaded) {
-      return <div>Loading chat...</div>;
-    } else {
-      return <div id="mck-sidebox-launcher" />;
-    }
+    return (
+      <div id="kommunicate-app"></div>
+    )
   }
 }
 
