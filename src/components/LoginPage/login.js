@@ -1,114 +1,54 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import { loginUser } from "../../actions/user_action";
-import "./style.css";
+import './style.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
 
-function LoginPage() {
-  // React States
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
+const Signin = () =>{
+    const navigate = useNavigate()
+    const [email, setEmail] = useState()
+    const [pass, setPass] = useState()
+    const [warning, setWarning] = useState("")
 
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1"
-    },
-    {
-      username: "user2",
-      password: "pass2"
-    }
-  ];
-
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password"
-  };
-
-  const handleSubmit = (event) => {
-    //Prevent page reload
-    event.preventDefault();
-
-    var { uname, pass } = document.forms[0];
-
-    console.log(uname.value);
-    console.log(pass.value);
-
-    const dataToSubmit={
-     email:uname.value,
-      password:pass.value
+    const loginnow = () => {
+        if (!email){
+            setWarning("Enter Email Id")
+        }else if(!pass){
+            setWarning("Enter Password")
+        }
+        else{
+        const data = {email: email, password: pass}
+        axios.post('http://localhost:5000/login', data)
+        .then(response=>{
+            if(response.data.loginSuccess){
+                localStorage.setItem('userId',response.data.userId);
+                localStorage.setItem('name',response.data.name);
+                navigate('/')
+            }else{
+                setWarning("Invalid \n  Email Id or Password")
+            }
+        })}
     }
 
-    // Find user login info
-    //const userData = database.find((user) => user.username === uname.value);
-   loginUser(dataToSubmit)
-   .then(response => {
-    if (response.payload.loginSuccess) {
-      window.localStorage.setItem('userId', response.payload.userId);
-        window.localStorage.setItem('name', response.payload.name);
-      window.location.href = "/";
-    } else {
-      alert('Check out your Account or Password again')
-    }
-   }) 
-   
-   .catch(err => {
-     alert('Check out your Account or Password again')
-     setTimeout(() => {
-       alert("")
-     }, 3000);
-   });
-   
-
-    // Compare user info
-    // if (userData) {
-    //   if (userData.password !== pass.value) {
-    //     // Invalid password
-    //     setErrorMessages({ name: "pass", message: errors.pass });
-    //   } else {
-    //     setIsSubmitted(true);
-    //   }
-    // } else {
-    //   // Username not found
-    //   setErrorMessages({ name: "uname", message: errors.uname });
-    // }
-  };
-
-  // Generate JSX code for error message
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
-
-  // JSX code for login form
-  const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label>Username </label>
-          <input type="text" name="uname" required />
-          {renderErrorMessage("uname")}
+    return(
+        <div className='log'>
+            <table>
+                <tr>
+                    <h2>Log In</h2>
+                    <pre>{warning}</pre>
+                </tr>
+                <tr>
+                    <td><input type = "email" value={email} name = 'email' placeholder='Email id' onChange={(e)=>setEmail(e.target.value)} required></input></td>
+                </tr>
+                <tr>
+                    <td><input type= "password" value={pass} name = 'password' placeholder='Password' onChange={(e)=>setPass(e.target.value)} required></input></td>
+                </tr>
+                <tr>
+                    <td className='btn'><button type='submit' onClick={loginnow}>Submit</button></td>
+                </tr>
+            </table>
         </div>
-        <div className="input-container">
-          <label>Password </label>
-          <input type="password" name="pass" required />
-          {renderErrorMessage("pass")}
-        </div>
-        <div className="button-container">
-          <input type="submit" />
-        </div>
-      </form>
-    </div>
-  );
-
-  return (
-    <div className="app">
-      <div className="login-form">
-        <div className="title">Sign In</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-      </div>
-    </div>
-  );
+    )
 }
 
-export default LoginPage;
+
+export default Signin
